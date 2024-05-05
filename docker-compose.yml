@@ -1,0 +1,15 @@
+services:
+  db:
+    ports:
+      - 5432:5432
+    image: postgres:16-alpine
+    container_name: farm-service-postgres
+    volumes:
+      - farmservice_postgres_data:/var/lib/postgresql/data/
+    restart: unless-stopped
+    env_file:
+      - ./.env
+
+volumes:
+  farmservice_postgres_data:
+    external: true
